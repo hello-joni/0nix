@@ -13,12 +13,6 @@
   system.stateVersion = "26.05";
 
   imports = [
-    # Auto-generated hardware config (regenerate with --no-filesystems on reinstall)
-    ./hardware-configuration.nix
-
-    # Hardware config for this laptop model
-    ./Lenovo-Yoga-7-16IAP7.nix
-
     # Shared modules
     ../modules/unfree.nix
   ];
@@ -45,20 +39,20 @@
   # ------------------------------------------------------------
   # ACCOUNT ICON
 
-  # Paolumu monster icon resized and padded to 256x256 for the GNOME login screen.
+  # Gajau monster icon resized and padded to 256x256 for the GNOME login screen.
   # Sets the icon via AccountsService activation script.
   system.activationScripts.account-icon.text = ''
     mkdir -p /var/lib/AccountsService/icons
     cp ${
-      pkgs.runCommand "paolumu-icon.png"
+      pkgs.runCommand "gajau-icon.png"
         {
           nativeBuildInputs = [ pkgs.imagemagick ];
         }
         ''
           convert ${
             builtins.fetchurl {
-              url = "https://monsterhunterwiki.org/images/f/f7/MHWI-Paolumu_Icon.png";
-              sha256 = "1zh7dvilrx96xy1p6idix4p0dk78jlisrb3dwf222ril1rcvfx4d";
+              url = "https://monsterhunterwiki.org/images/7/73/MHWI-Gajau_Icon.png";
+              sha256 = "cECfwlJs1PbwvNszlxZ0TYEYufSdriCU8TxwQD2Z3Ds=";
             }
           } -resize 200x200 -background none -gravity center -extent 256x256+0-10 $out
         ''
@@ -83,12 +77,12 @@
   home-manager.useUserPackages = true;
   home-manager.users.joni = import ../home-manager/home.nix;
 
-  networking.hostName = "paolumu";
+  networking.hostName = "gajau";
 
   users.users = {
     joni = {
       # Shows on login page
-      description = "Paolumu";
+      description = "Gajau";
 
       # Fish is entered via exec in fish.nix
       shell = pkgs.bashInteractive;

@@ -16,6 +16,10 @@
     waveforms.url = "github:liff/waveforms-flake";
     waveforms.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Hardware profiles for various devices
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
+
     # Git hooks and linters
     git-hooks.url = "github:cachix/git-hooks.nix";
 
@@ -36,6 +40,7 @@
       nix-flatpak,
       git-hooks,
       waveforms,
+      nixos-hardware,
       ...
     }@inputs:
     let
@@ -60,10 +65,11 @@
         inherit (hooks) shellHook;
       };
 
-      nixosConfigurations.paolumu = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.gajau = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./nixos/configuration.nix
+          nixos-hardware.nixosModules.chuwi-minibook-x
           waveforms.nixosModules.default
           home-manager.nixosModules.home-manager
           {
