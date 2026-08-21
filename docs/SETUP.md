@@ -25,7 +25,7 @@ git clone https://github.com/hello-joni/0nix.git ~/0nix
 cd ~/0nix
 cp /etc/nixos/hardware-configuration.nix ~/0nix/nixos
 git add .
-sudo nixos-rebuild switch --flake ~/0nix#paolumu
+sudo nixos-rebuild switch --flake ~/0nix#gajau
 ```
 
 Other steps:
