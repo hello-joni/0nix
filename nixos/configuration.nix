@@ -13,6 +13,9 @@
   system.stateVersion = "26.05";
 
   imports = [
+    # Auto-generated hardware config (regenerate with --no-filesystems on reinstall)
+    ./hardware-configuration.nix
+
     # Shared modules
     ../modules/unfree.nix
   ];
